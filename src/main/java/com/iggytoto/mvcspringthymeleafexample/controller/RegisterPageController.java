@@ -29,6 +29,6 @@ public class RegisterPageController {
     @Transactional
     public String registerAction(@ModelAttribute("account") Account account) {
         userAccountService.registerNewUser(account);
-        return PageNameConstants.REDIRECT_LOGIN;
+        return PageNameConstants.REGISTER;
     }
 }

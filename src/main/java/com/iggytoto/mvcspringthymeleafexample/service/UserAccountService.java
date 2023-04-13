@@ -25,11 +25,7 @@ public class UserAccountService implements UserDetailsService {
     }
 
     public Account registerNewUser(Account account) {
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         return userRepository.save(account);
-    }
-
-    public void makePayed(Account acc) {
-        acc.setStatus("PAYED");
-        userRepository.save(acc);
     }
 }

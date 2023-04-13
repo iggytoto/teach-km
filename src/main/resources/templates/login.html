@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
 </head>
 <body>
-<form th:action="@{/login}" method="post" class="form login">
-    <h2>Email:</h2>
-    <input type="email" id="email" name="email" placeholder="youremail@asd.com"/>
-    <h2> Password:</h2>
-    <input type="password" id="password" name="password" placeholder="Your password"/>
-    <hr/>
-    <input type="submit" value="Login"/>
-</form>
+<div sec:authorize="isAuthenticated()">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" method="post" value="Logout">
+    </form>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <form th:action="@{/login}" method="post">
+        <h2>Email:</h2>
+        <input type="email" id="email" name="email" placeholder="youremail@asd.com"/>
+        <h2> Password:</h2>
+        <input type="password" id="password" name="password" placeholder="Your password"/>
+        <hr/>
+        <input type="submit" value="Login"/>
+    </form>
+
+</div>
+
 
 </body>
 </html>

@@ -9,13 +9,11 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String email;
     @Column
     private String password;
 
-
-    private String status;
 
     public Account(){}
 
@@ -47,13 +45,5 @@ public class Account {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
